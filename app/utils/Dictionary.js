@@ -1,4 +1,6 @@
-var R;
+// Implements a Trie Symbol table with get/put/contains operations.
+// Based on http://algs4.cs.princeton.edu/52trie/TrieST.java.html
+var R; //Radix
 var root = Node;
 
 var Dictionary = function(alphabet) {
@@ -17,6 +19,7 @@ Dictionary.prototype.put = function(key, value) {
 
 Dictionary.prototype._put = function(x, key, val, d) {
     if(x == null) x = new Node();
+    // is the key was already in the dictionary update the x.val to new val and return or put for first time
     if(d == key.length) {
         x.val = val;
         return x;
@@ -49,8 +52,8 @@ Dictionary.prototype.subwordsIn = function(string) {
 Dictionary.prototype._subwordsIn = function(x, string, d, data) {
     if(x == null) return;
     if(x.val != null) {
-        data.push(string.substring(0, d));
-        if(d == string.length)
+        data.push(string.substring(0, d)); // subword has been found do add it to set
+        if(d == string.length) // at end of linked list so return
             return;
     }
     var c = string[d];

@@ -1,3 +1,6 @@
+// Takes a string and returns a set of permutations of that string
+// E.g. abc, acb, bac, bca etc..
+// Based on https://en.wikipedia.org/wiki/Heap%27s_algorithm
 var Permutations = function(input) {
     this.N = input.letters.length;
     this.A = input.letters.split('');

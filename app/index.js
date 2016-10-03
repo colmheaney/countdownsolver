@@ -2,7 +2,7 @@ var React = require('react');
 var ReactDom = require('react-dom');
 var Permutations = require('./utils/Permutations');
 var Dictionary = require('./utils/Dictionary');
-var WordArray = require('./LargeDict');
+var WordArray = require('./utils/LargeDict');
 var transparentBg = require('./styles').transparentBg;
 var alphabet = "abcdefghijklmnopqrstuvwxyz'";
  
@@ -131,7 +131,7 @@ var LettersForm = React.createClass({
     this.state.invalidLetters = false;
     this.state.invalidLength = false;
     this.state.lettersEmpty = false;
-    var letters = this.state.letters.trim();
+    var letters = this.state.letters.trim().toLowerCase();
     if (!this.validLength(letters) 
         || !this.validLetters(letters)) { return; }
 
@@ -163,29 +163,31 @@ var LettersForm = React.createClass({
   
   render: function() {
     return (
-    <div className="col-sm-12">
-      <h1>Countdown Solver</h1>
-      <div >
-        <form className="lettersForm form-inline" onSubmit={this.handleSubmit}>
-          <div className="form-group">
-            <input
-              className='form-control'
-              type="text"
-              placeholder="Choose 9 letters"
-              value={this.state.letters}
-              onChange={this.handleLettersChange}
-            />
-          </div>
-          <button
-            className="btn btn-success"
-            type="submit"
-            > Go
-          </button>
-          <div>
-            <p className="text-danger">{this.state.invalidLetters ? 'Invalid letters' : ''}</p>
-            <p className="text-danger">{this.state.invalidLength  ? 'Too many letters'  : ''}</p>
-            <p className="text-danger">{this.state.lettersEmpty   ? 'You need to provide letters'  : ''}</p>
-          </div>
+      <div className="col-sm-12">
+        <h1>Countdown Solver</h1>
+        <p className="small">See the code on
+          <a href="https://github.com/colmheaney/countdownsolver"> Github</a>
+        </p>
+         <div>
+          <form className="lettersForm form-inline" onSubmit={this.handleSubmit}>
+            <div className="form-group">
+              <input
+                className='form-control'
+                type="text"
+                placeholder="Choose 9 letters"
+                value={this.state.letters}
+                onChange={this.handleLettersChange}
+                />
+            </div>
+            <button
+              className="btn btn-success"
+              type="submit"> Go
+            </button>
+            <div>
+              <p className="text-danger">{this.state.invalidLetters ? 'Invalid letters' : ''}</p>
+              <p className="text-danger">{this.state.invalidLength ? 'Too many letters' : ''}</p>
+              <p className="text-danger">{this.state.lettersEmpty ? 'You need to provide letters' : ''}</p>
+            </div>
           </form>
         </div>
       </div>
