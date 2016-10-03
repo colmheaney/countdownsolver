@@ -15,7 +15,6 @@ var LettersBox = React.createClass({
   },
 
   loadDictionary: function() {
-      console.log('Loading dictionary');
       return new Promise(function(resolve, reject) {
         d = new Dictionary(alphabet);
         var count = 0;
@@ -29,7 +28,6 @@ var LettersBox = React.createClass({
   },
 
   handleLettersSubmit: function(input) {
-      console.log("Handling letters submit");
       var p = new Permutations(input);
       var permutations = p.generate();
       var words = []
@@ -165,9 +163,8 @@ var LettersForm = React.createClass({
     return (
       <div className="col-sm-12">
         <h1>Countdown Solver</h1>
-        <p className="small">See the code on
-          <a href="https://github.com/colmheaney/countdownsolver"> Github</a>
-        </p>
+        <span className="small">See the code on </span>
+        <a className="small" href="https://github.com/colmheaney/countdownsolver">Github</a>
          <div>
           <form className="lettersForm form-inline" onSubmit={this.handleSubmit}>
             <div className="form-group">
