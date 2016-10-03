@@ -1,0 +1,30 @@
+var Permutations = function(input) {
+    this.letters = input.letters;
+    this.arr = [];
+}
+
+Permutations.prototype.generate = function() {
+    var n = this.letters.length;
+    this.perm(this.letters.split(''), n);
+    return this.arr;
+}
+
+Permutations.prototype.perm = function(s,n) {
+    if(n == 1) {
+        this.arr.push({letters: s.join('')})
+        return;
+    }
+    for(var i = 0; i < n; i++) {
+        this.swap(s, i, n-1);
+        this.perm(s, n-1);
+        this.swap(s, i, n-1);
+    }
+}
+
+Permutations.prototype.swap = function(s, i, j) {
+    var c = s[i];
+    s[i] = s[j];
+    s[j] = c;
+}
+
+module.exports = Permutations;
